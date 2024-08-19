@@ -12,4 +12,11 @@ class Pessoa{
     function crescer(int $centimentros){
         $this->altura+=$centimentros; //$this significa que estarei utilizando como referência o objeto que invocou o método. 
     }
+
+    function envelhecer(int $anos){
+        $this->idade+=$anos;
+    }
+    function formar(string $titulo){
+        $this->escolaridade = $titulo;
+    }
 }
