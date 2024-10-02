@@ -1,0 +1,12 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "name": "Banco",
+            "group": "Testes",
+            "database": "${workspaceFolder:Programação Web}/reforço/banco.sqlite"
+        }
+    ],
+    "sqltools.useNodeRuntime": true
+}
