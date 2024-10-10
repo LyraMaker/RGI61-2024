@@ -9,7 +9,7 @@ class ValidarUsuario{
     }
 
     public function verificarSeExiste($usuario,$senha){
-        $sql = "SELECT * FROM usuarios WHERE nome=:u and senha = :s";
+        $sql = "SELECT * FROM usuarios WHERE nome=:u and senha = :s and perfil_ativo = TRUE";
         $comando = $this->pdo->prepare($sql);
         $comando->bindValue("u",$usuario);
         $comando->bindValue("s",$senha);
