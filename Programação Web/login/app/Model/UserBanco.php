@@ -22,6 +22,48 @@ class UserBanco{
         return $comando->execute();
     }
 
+    public function editarUsuario($nome,$senha,$ativo){
+        $sql = "INSERT INTO usuarios(nome,senha,perfil_ativo) values (:u,:p,:a)";
+
+        $comando = $this->pdo->prepare($sql);
+        $comando->bindValue("u",$nome);
+        $comando->bindValue("p",$senha);
+        $comando->bindValue("a",$ativo,PDO::PARAM_BOOL);
+
+        return $comando->execute();
+    }
+
+    public function buscarPorUsername($u){
+        $sql = "SELECT * FROM usuarios WHERE nome=:u";
+
+        $comando = $this->pdo->prepare($sql);
+        $comando->bindValue("u",$u);
+        $comando->execute();
+        $resultado = $comando->fetchAll(PDO::FETCH_ASSOC);
+
+        return $this->hidratar($resultado);
+    }
+
+    public function atualizarUsuario($nome,$senha,$ativo){
+        $sql = "UPDATE usuarios set nome = :u, senha = :p, perfil_ativo = :a where nome = :u";
+
+        $comando = $this->pdo->prepare($sql);
+        $comando->bindValue("u",$nome);
+        $comando->bindValue("p",$senha);
+        $comando->bindValue("a",$ativo,PDO::PARAM_BOOL);
+
+        return $comando->execute();
+    }
+
+    public function excluirUsuario($nome){
+        $sql = "DELETE FROM usuarios WHERE nome = :u";
+
+        $comando = $this->pdo->prepare($sql);
+        $comando->bindValue("u",$nome);
+
+        return $comando->execute();
+    }
+
     public function verificarSeExiste($usuario,$senha){
         $sql = "SELECT * FROM usuarios WHERE nome=:u and senha = :s and perfil_ativo = TRUE";
         $comando = $this->pdo->prepare($sql);

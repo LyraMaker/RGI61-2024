@@ -20,8 +20,8 @@
                             <td><?php echo htmlspecialchars($usuario->getPassword()); ?></td>
                             <td><?= $usuario->getAtivo() == "1"?"Sim":"Não" ?></td>
                             <td>
-                                <a class="button is-small is-info">Editar</a>
-                                <a class="button is-small is-danger">Excluir</a>
+                                <a class="button is-small is-info" href="/index.php?acao=editar&id=<?=$usuario->getUsername()?>">Editar</a>
+                                <a class="button is-small is-danger" href="/index.php?acao=excluir&id=<?=$usuario->getUsername()?>">Excluir</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>
